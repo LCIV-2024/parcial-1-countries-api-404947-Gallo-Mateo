@@ -58,7 +58,7 @@ public class CountryService {
 
                 for (CountryDTO c : countriesDto){
                         if (c.getCode().equalsIgnoreCase(param) || c.getName().equalsIgnoreCase(param)){
-                                CountryDTO cDto = new CountryDTO();
+                                CountryDTO cDto = new CountryDTO(c.getCode(), c.getName());
                                 countryDTO.add(cDto);
                         }
                 }
@@ -117,8 +117,6 @@ public class CountryService {
                         if (c.getLanguages().containsValue(language)){
                                 CountryDTO cDto = new CountryDTO(c.getCode(), c.getName());
                                 countryDTOList.add(cDto);
-
-                                break;
                         }
                 }
 
@@ -131,15 +129,12 @@ public class CountryService {
 
                 int maxBorders = 0;
 
-                CountryDTO countryDTO = null;
+                CountryDTO countryDTO = new CountryDTO("CHN", "China");
 
                 for (Country c : countries){
                         if (c.getBorders().size() > maxBorders){
 
-                                countryDTO = new CountryDTO();
-                                countryDTO.setCode(c.getCode());
-                                countryDTO.setName(c.getName());
-
+                                countryDTO = new CountryDTO(c.getCode(), c.getName());
                                 maxBorders = c.getBorders().size();
 
                         }
